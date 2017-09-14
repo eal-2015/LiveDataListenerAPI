@@ -1,38 +1,4 @@
-Post called. Value is: not null
-DB called
-value inserted
-Post called. Value is: null
-DB called
-Exception: System.ArgumentNullException: Value cannot be null.
-Parameter name: document
-   at MongoDB.Driver.Core.Misc.Ensure.IsNotNull[T](T value, String paramName)
-   at MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
-   at GetDataAPI.Controllers.AtkiController.Post(TrafficMeasurement value) in C:\Users\morjo\source\repos\GetDataAPI\GetDataAPI\Controllers\AtkiController.cs:line 30
-Post called. Value is: null
-DB called
-Exception: System.ArgumentNullException: Value cannot be null.
-Parameter name: document
-   at MongoDB.Driver.Core.Misc.Ensure.IsNotNull[T](T value, String paramName)
-   at MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
-   at GetDataAPI.Controllers.AtkiController.Post(TrafficMeasurement value) in C:\Users\morjo\source\repos\GetDataAPI\GetDataAPI\Controllers\AtkiController.cs:line 30
-Post called. Value is: null
-DB called
-Exception: System.ArgumentNullException: Value cannot be null.
-Parameter name: document
-   at MongoDB.Driver.Core.Misc.Ensure.IsNotNull[T](T value, String paramName)
-   at MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
-   at GetDataAPI.Controllers.AtkiController.Post(TrafficMeasurement value) in C:\Users\morjo\source\repos\GetDataAPI\GetDataAPI\Controllers\AtkiController.cs:line 30
-Post called. Value is: null
-DB called
-Exception: System.ArgumentNullException: Value cannot be null.
-Parameter name: document
-   at MongoDB.Driver.Core.Misc.Ensure.IsNotNull[T](T value, String paramName)
-   at MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
-   at GetDataAPI.Controllers.AtkiController.Post(TrafficMeasurement value) in C:\Users\morjo\source\repos\GetDataAPI\GetDataAPI\Controllers\AtkiController.cs:line 30
-Post called. Value is: null
-DB called
-Exception: System.ArgumentNullException: Value cannot be null.
-Parameter name: document
-   at MongoDB.Driver.Core.Misc.Ensure.IsNotNull[T](T value, String paramName)
-   at MongoDB.Driver.MongoCollectionBase`1.InsertOne(TDocument document, InsertOneOptions options, CancellationToken cancellationToken)
-   at GetDataAPI.Controllers.AtkiController.Post(TrafficMeasurement value) in C:\Users\morjo\source\repos\GetDataAPI\GetDataAPI\Controllers\AtkiController.cs:line 30
+14-09-2017 11:11:40Object: 14-09-2017 09:50:40
+14-09-2017 11:11:40Post called. Value is: not null
+14-09-2017 11:11:40DB called
+14-09-2017 11:11:40value inserted
