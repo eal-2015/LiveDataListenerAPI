@@ -11,8 +11,8 @@ namespace ModelHelper
         public string mac_id { get; set; }
         public int is_entrance { get; set; }
         public string direction { get; set; }
-        public int shop_id { get; set; }
-        public int custom_shop_id { get; set; }
+        public int? shop_id { get; set; }
+        public int? custom_shop_id { get; set; }
         public string name { get; set; }
         public string lon { get; set; }
         public string lat { get; set; }

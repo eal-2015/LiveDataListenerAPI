@@ -7,6 +7,7 @@ using ModelHelper;
 using MongoDB.Driver;
 using System.IO;
 
+
 namespace GetVemcoAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
@@ -17,50 +18,24 @@ namespace GetVemcoAPI.Controllers
         // POST api/values
         [HttpPost]
         [ActionName("insert")]
-        public void Post([FromBody]VemcoMeasurement value)
+        public void Post([FromBody]VemcoResponse value)
         {
-            StreamWriter sw = new StreamWriter("vemcoinsertlog.txt", true);
-            try
+            using (StreamWriter sw = new StreamWriter("VemcoMeasurementLog.txt", true))
             {
-                sw.WriteLine("Post called. Value is: " + (value == null ? "null" : "not null"));
-                IMongoCollection<VemcoMeasurement> collection = conn.ConnectToVemco("Trafik_DB", "LiveVemcoMeasurements");
-                sw.WriteLine("DB called");
-                collection.InsertOne(value);
-                sw.WriteLine("value inserted");
-            }
-            catch (Exception ex)
-            {
-                sw.WriteLine("Exception: " + ex.ToString());
-            }
-            finally
-            {
-                sw.Flush();
-                sw.Close();
-            }
-        }
+                try
+                {
+                    sw.WriteLine(DateTime.Now + " - Post called. " + (value == null ? "null" : value.data.ToString()));
+                    IMongoCollection<VemcoMeasurement> collection = conn.ConnectToVemco("Trafik_DB", "LiveVemcoMeasurements");
+                    sw.WriteLine(DateTime.Now + " - DB called");
 
-        // POST api/values
-        [HttpPost]
-        [ActionName("station")]
-        public void PostStation([FromBody]VemcoStation value)
-        {
-            StreamWriter sw = new StreamWriter("vemcostationlog.txt", true);
-            try
-            {
-                sw.WriteLine("Post called. Value is: " + (value == null ? "null" : "not null"));
-                IMongoCollection<VemcoStation> collection = conn.ConnectToVemcoStations("Trafik_DB", "VemcoStations");
-                sw.WriteLine("DB called");
-                collection.InsertOne(value);
-                sw.WriteLine("value inserted");
-            }
-            catch (Exception ex)
-            {
-                sw.WriteLine("Exception: " + ex.ToString());
-            }
-            finally
-            {
-                sw.Flush();
-                sw.Close();
+                    collection.InsertOne(value.data);
+
+                    sw.WriteLine(DateTime.Now + " - value inserted");
+                }
+                catch (Exception ex)
+                {
+                    sw.WriteLine(DateTime.Now + " - Exception: " + ex.ToString());
+                }
             }
         }
     }

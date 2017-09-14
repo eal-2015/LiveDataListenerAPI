@@ -23,7 +23,8 @@ namespace GetDataAPI.Controllers
         [ActionName("insert")]
         public void Post([FromBody]ATKIResponse value)
         {
-            using (StreamWriter sw = new StreamWriter("atkimeasurementlog.txt", true)) {
+            using (StreamWriter sw = new StreamWriter("atkimeasurementlog.txt", true))
+            {
                 try
                 {
                     sw.WriteLine(DateTime.Now + " - Post called. " + (value == null ? "null" : value.data.ToString()));
