@@ -18,5 +18,10 @@ namespace ModelHelper
         public int stationid { get; set; }
         //public string messtmstmp { get; set; }
         //public string mess_group { get; set; }
+
+        public override string ToString()
+        {
+            return "Data: " + stationid.ToString() + ", " + datetime.ToString() + ", " + lane.ToString() + ", " + speed.ToString() + ", " + length.ToString() + ", " + @class.ToString() + ", " + gap.ToString() + ", " + wrong_dir.ToString() + ", " + display.ToString() + ", " + flash.ToString();
+        }
     }
 }
