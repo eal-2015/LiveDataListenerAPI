@@ -25,11 +25,11 @@ namespace GetDataAPI.Controllers
             {
                 sb.AppendLine($"{DateTime.Now} - Post called. {(value == null ? "Data is null" : value.data.ToString())}"); // to log
                 IMongoCollection<TrafficMeasurement> collection = conn.ConnectToMeasurement("Trafik_DB", "LiveMeasurements");
-                sb.AppendLine($"{DateTime.Now} - DB called"); // to log
+                sb.AppendLine($"{DateTime.Now} - DB connected"); // to log
 
                 collection.InsertOne(value.data);
 
-                sb.AppendLine($"{DateTime.Now} - value inserted"); // to log
+                sb.Append($" --- {DateTime.Now} - value inserted"); // adding to previous line.. more compact log
             }
             catch (Exception ex)
             {
