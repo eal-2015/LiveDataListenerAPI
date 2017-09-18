@@ -27,17 +27,17 @@ namespace GetDataAPI.Controllers
             {
                 try
                 {
-                    sw.WriteLine(DateTime.Now + " - Post called. " + (value == null ? "null" : value.data.ToString()));
+                    sw.WriteLine($"{DateTime.Now} - Post called. {(value == null ? "null" : value.data.ToString())}");
                     IMongoCollection<TrafficMeasurement> collection = conn.ConnectToMeasurement("Trafik_DB", "LiveMeasurements");
-                    sw.WriteLine(DateTime.Now + " - DB called");
+                    sw.WriteLine($"{DateTime.Now} - DB called");
 
                     collection.InsertOne(value.data);
 
-                    sw.WriteLine(DateTime.Now + " - value inserted");
+                    sw.WriteLine($"{DateTime.Now} - value inserted");
                 }
                 catch (Exception ex)
                 {
-                    sw.WriteLine(DateTime.Now + " - Exception: " + ex.ToString());
+                    sw.WriteLine($"{DateTime.Now} - Exception: {ex.ToString()}");
                 }
             }
 

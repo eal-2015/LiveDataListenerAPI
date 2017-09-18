@@ -14,7 +14,7 @@ namespace ModelHelper
 
         public override string ToString()
         {
-            return "Data: " + sensorId.ToString() + ", " + fromTstmp.ToString() + ", " + toTstmp.ToString() + ", " + @in.ToString() + ", " + @out.ToString();
+            return $"Data: {sensorId.ToString()}, {fromTstmp.ToString()}, {toTstmp.ToString()}, {@in.ToString()}, {@out.ToString()}";
         }
     }
 

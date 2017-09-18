@@ -21,7 +21,7 @@ namespace ModelHelper
 
         public override string ToString()
         {
-            return "Data: " + stationid.ToString() + ", " + datetime.ToString() + ", " + lane.ToString() + ", " + speed.ToString() + ", " + length.ToString() + ", " + @class.ToString() + ", " + gap.ToString() + ", " + wrong_dir.ToString() + ", " + display.ToString() + ", " + flash.ToString();
+            return $"Data: {stationid.ToString()}, {datetime.ToString()}, {lane.ToString()}, {speed.ToString()}, {length.ToString()}, {@class.ToString()}, {gap.ToString()}, {wrong_dir.ToString()}, {display.ToString()}, {flash.ToString()}";
         }
     }
 }
