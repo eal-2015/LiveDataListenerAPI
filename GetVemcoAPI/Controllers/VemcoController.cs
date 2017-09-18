@@ -6,36 +6,52 @@ using Microsoft.AspNetCore.Mvc;
 using ModelHelper;
 using MongoDB.Driver;
 using System.IO;
-
+using System.Text;
 
 namespace GetVemcoAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     public class VemcoController : Controller
     {
-        Mongo conn = new Mongo();
+        Mongo conn = new Mongo(); // connect to db
 
         // POST api/values
         [HttpPost]
         [ActionName("insert")]
         public void Post([FromBody]VemcoResponse value)
         {
-            using (StreamWriter sw = new StreamWriter("VemcoMeasurementLog.txt", true))
+            StringBuilder sb = new StringBuilder(); // for building log
+            try
             {
-                try
-                {
-                    sw.WriteLine($"{DateTime.Now} - Post called. {(value == null ? "null" : value.data.ToString())}");
-                    IMongoCollection<VemcoMeasurement> collection = conn.ConnectToVemco("Trafik_DB", "LiveVemcoMeasurements");
-                    sw.WriteLine($"{DateTime.Now} - DB called");
+                sb.AppendLine($"{DateTime.Now} - Post called. {(value == null ? "Data is null" : value.data.ToString())}"); // to log
+                IMongoCollection<VemcoMeasurement> collection = conn.ConnectToVemco("Trafik_DB", "LiveVemcoMeasurements");
+                sb.AppendLine($"{DateTime.Now} - DB called"); // to log
 
-                    collection.InsertOne(value.data);
+                collection.InsertOne(value.data);
 
-                    sw.WriteLine($"{DateTime.Now} - value inserted");
-                }
-                catch (Exception ex)
-                {
-                    sw.WriteLine($"{DateTime.Now} - Exception: {ex.ToString()}");
-                }
+                sb.AppendLine($"{DateTime.Now} - value inserted"); // to log
+            }
+            catch (Exception ex)
+            {
+                sb.AppendLine($"{DateTime.Now} - Exception: {ex.ToString()}"); // to log
+            }
+            finally
+            {
+                System.IO.File.AppendAllText("VemcoMeasurementLog.txt", sb.ToString()); // write log entries to file
+            }
+            // cleaning the log file
+            var lines = System.IO.File.ReadAllLines("VemcoMeasurementLog.txt"); // get al lines in the log
+            IEnumerable<string> newlines = null; // for holding the new log
+            int linenumbers = lines.Count(); // count them
+            int maxLines = 10000; // max line number
+
+            if (linenumbers > maxLines) // if log is too big
+            {
+                newlines = lines.Skip(linenumbers - maxLines); // read all lines but skip the first X
+            }
+            if (newlines != null) // if we changed the log
+            {
+                System.IO.File.WriteAllLines("VemcoMeasurementLog.txt", newlines); // overwrite old log
             }
         }
     }
